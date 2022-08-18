@@ -1,0 +1,7 @@
+.quiz {
+    color: rgb(141, 236, 146);
+    text-decoration: none;
+}
+.quiz:hover {
+    color: rgb(235, 166, 224);
+}

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import FlashcardList from '../flashcard/FlashCardList';
-import '../flashcard/fcApp.css';
+import FlashcardList from '../QuickCard/QuickCardList';
+import '../QuickCard/qApp.css';
 import axios from 'axios'
 
 
-const FlashCardApp = () => {
+const QuickCardApp = () => {
   // For Dismiss Button with Alert
   const [flashcards, setFlashcards] = useState([])
   const [categories, setCategories] = useState([])
@@ -84,4 +84,4 @@ const FlashCardApp = () => {
       );
     }
 
-export default FlashCardApp;;
+export default QuickCardApp;;

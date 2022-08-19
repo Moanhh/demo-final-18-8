@@ -12,8 +12,8 @@ const navigation = [
   
   
   {
-    title: "Flash Cards",
-    href: "/flashcard",
+    title: "Quick Cards",
+    href: "/QuickCard",
     icon: "bi bi-card-text",
   },
   

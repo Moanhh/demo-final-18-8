@@ -9,7 +9,7 @@ const FullLayout = lazy(() => import("../layouts/FullLayout.js"));
 const Starter = lazy(() => import("../views/Starter.js"));
 const About = lazy(() => import("../views/About.js"));
 const Alerts = lazy(() => import("../views/ui/Alerts"));
-const FlashCardApp = lazy(() => import("../views/flashcard/fcApp"));
+const QuickCardApp = lazy(() => import("../views/QuickCard/qApp"));
 /*****Routes******/
 
 const ThemeRoutes = [
@@ -21,7 +21,7 @@ const ThemeRoutes = [
       { path: "/starter", exact: true, element: <Starter /> },
       { path: "/about", exact: true, element: <About /> },
       { path: "/alerts", exact: true, element: <Alerts /> },
-      { path: "/flashcard", exact: true, element: <FlashCardApp />}
+      { path: "/QuickCard", exact: true, element: <QuickCardApp />}
     ],
   },
 ];

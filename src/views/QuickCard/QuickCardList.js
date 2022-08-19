@@ -1,7 +1,7 @@
 import React from 'react'
-import Flashcard from '../flashcard/FlashCards';
+import Flashcard from './QuickCard';
 
-function FlashcardList({ flashcards }) {
+function QuickCardList({ flashcards }) {
   return (
     <div className="card-grid">
       {flashcards.map(flashcard => {
@@ -11,4 +11,4 @@ function FlashcardList({ flashcards }) {
   )
 };
 
-export default FlashcardList;
+export default QuickCardList;

@@ -17,7 +17,7 @@ import { ReactComponent as LogoWhite } from "../assets/images/logos/xtremelogowh
 import user1 from "../assets/images/users/user1.jpg";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(true);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
@@ -59,7 +59,7 @@ const Header = () => {
       <Collapse navbar isOpen={isOpen}>
         <Nav className="me-auto" navbar>
           <NavItem>
-            <Link to="/home" className="nav-link">
+            <Link to="/Starter " className="nav-link">
               Home
             </Link>
           </NavItem>
@@ -76,7 +76,7 @@ const Header = () => {
             </DropdownMenu>
           </UncontrolledDropdown>
           <NavItem>
-            <Button to="/flashcard" className="create-new">
+            <Button to="/QuickCard" className="create-new">
               Start
             </Button>
           </NavItem>

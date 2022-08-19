@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 
 
-function Flashcard({ flashcard }) {
+function Quickcard({ flashcard }) {
   const [flip, setFlip] = useState(false)
   const [height, setHeight] = useState('initial')
 
@@ -49,4 +49,4 @@ function Flashcard({ flashcard }) {
   
 
 
-export default Flashcard;
+export default Quickcard;

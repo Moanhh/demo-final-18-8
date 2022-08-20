@@ -4,15 +4,8 @@ import Feeds from "../components/dashboard/Feeds";
 import ProjectTables from "../components/dashboard/ProjectTable";
 import Footer from "../components/dashboard/Footer";
 import styles from  "../assets/style/starter.module.css";
-import { Link, useLocation } from "react-router-dom";
-
-const navigation = [
-  {
-    title: "Flash Cards",
-    href: "/flashcard",
-    icon: "bi bi-card-text",
-  },
-];
+import { Link } from "react-router-dom";
+// import LoginApp from "../loginApp/LoginApp";
 
 
 
@@ -26,8 +19,8 @@ const Starter = () => {
             <div className= {styles.container}> 
                 <div className={styles.mastheadsubheading}>Welcome To FlashCard</div>
                 <div className={styles.mastheadheading }>It's Nice To Meet You</div>
-                <Link to="/flashcard" className={styles.btnstarter}>
-                  Start to study amazing things!
+                <Link to="/RegistrationApp" className={styles.btnstarter}>
+                  Click to start !
                 </Link>
                     
         

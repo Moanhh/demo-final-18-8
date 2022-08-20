@@ -14,7 +14,8 @@ import {
   Button,
 } from "reactstrap";
 import { ReactComponent as LogoWhite } from "../assets/images/logos/xtremelogowhite.svg";
-import user1 from "../assets/images/users/user1.jpg";
+import user from "../assets/images/users/user.jpg";
+import RegistrationForm from "../loginApp/pages/RegistrationForm";
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(true);
@@ -58,8 +59,9 @@ const Header = () => {
 
       <Collapse navbar isOpen={isOpen}>
         <Nav className="me-auto" navbar>
+          
           <NavItem>
-            <Link to="/Starter " className="nav-link">
+            <Link to="/starter " className="nav-link">
               Home
             </Link>
           </NavItem>
@@ -84,7 +86,7 @@ const Header = () => {
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle color="primary">
             <img
-              src={user1}
+              src={user}
               alt="profile"
               className="rounded-circle"
               width="30"
@@ -97,7 +99,11 @@ const Header = () => {
             <DropdownItem divider />
             <DropdownItem>My Balance</DropdownItem>
             <DropdownItem>Inbox</DropdownItem>
-            <DropdownItem>Logout</DropdownItem>
+            <DropdownItem>
+              <Link to="/RegistrationForm">
+                Register
+              </Link>
+            </DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </Collapse>

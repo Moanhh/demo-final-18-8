@@ -63,7 +63,7 @@ const QuickCardApp = () => {
           <form className="header" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="category">Category</label>
-              <select id="category" ref={categoryEl}>
+              <select className="box" id="category" ref={categoryEl}>
                 {categories.map(category => {
                   return <option value={category.id} key={category.id}>{category.name}</option>
                 })}
@@ -71,7 +71,7 @@ const QuickCardApp = () => {
             </div>
             <div className="form-group">
               <label htmlFor="amount">Number of Questions</label>
-              <input type="number" id="amount" min="1" step="1" defaultValue={10} ref={amountEl} />
+              <input type="number" className="box" id="amount" min="1" step="1" defaultValue={10} ref={amountEl} />
             </div>
             <div className="form-group">
               <button className="btnApp">Generate</button>

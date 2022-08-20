@@ -16,12 +16,15 @@ body {
     background-color: #d9e2f0;
     padding: 1.7rem 1.5rem;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, .3);
+    width: 100%;
+    height: auto;
   }
   
   .form-group {
     display: flex;
     flex-direction: column;
     margin: .52rem;
+    height:70px;
   }
   
   .form-group > label {
@@ -104,3 +107,7 @@ body {
   .flashcard-option:first-child {
     margin-top: 0;
   }
+
+.box {
+  height: 100px;
+}

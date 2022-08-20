@@ -1,0 +1,64 @@
+body{
+  background-image: url("../../src/assets/images/img/picLogin.jpg");
+  
+}
+
+.form{
+  background-color: rgba(233, 205, 205, 0.378);
+  border-radius: 10px;
+  width: 80%;
+  margin:  20px;
+  padding: 25px;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.form-body{
+  text-align: left;
+  padding: 20px 10px;
+  margin:15px 20px
+}
+
+.form-body > *{
+  padding: 5px;
+}
+
+.form__label{
+  width: 40%;
+  font-weight: 900;
+}
+
+
+.footer{
+  text-align: center;
+  position:inherit;
+
+}
+
+.btnR {
+  background-color:rgb(242, 192, 192);
+}
+
+.btnR:hover {
+  background-color:rgb(236, 112, 112);
+}
+
+.form-body {
+  border-radius: 50px;
+}
+
+.form__input {
+  background-color:rgba(147, 221, 206, 0.434);
+  border:rgb(203, 123, 123);
+  width:50%;
+  height:40px;
+}
+
+.have_account {
+  text-decoration: none;
+  
+}
+
+.link_login {
+  color:rgb(243, 76, 76);
+}

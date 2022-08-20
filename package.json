@@ -11,6 +11,7 @@
     "bootstrap": "^5.2.0",
     "bootstrap-icons": "^1.7.0",
     "cdbreact": "^1.5.3",
+    "firebase": "^9.9.3",
     "history": "^5.0.0",
     "mdbreact": "^4.26.0",
     "node-sass": "^7.0.1",

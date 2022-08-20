@@ -21,12 +21,6 @@ function Quickcard({ flashcard }) {
     return () => window.removeEventListener('resize', setMaxHeight)
   }, []);
 
-
-  
-
-  
-        
-  
   return (
 
     // flipcard
@@ -42,7 +36,6 @@ function Quickcard({ flashcard }) {
       <div className="back" ref={backEl}>{flashcard.answer}</div>
     </div>
 
-    
 </>
   )
         }

@@ -1,4 +1,17 @@
+<<<<<<< HEAD
 import React, {useState, useRef} from 'react';
+=======
+
+// CHƯA DÙNG DƯỢC ĐÂU!!
+
+import {useState} from 'react';
+import { Link } from 'react-router-dom';
+import '../Login.css';
+import {signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth';
+import {auth} from '../firebase';
+import {useNavigate} from 'react-router-dom';
+import {useAuthValue} from '../other/AuthContext';
+>>>>>>> 3f96970668e3b1cd8882f7da8948f11541c44f5d
 
 // import {Component} from 'react';
 // import {Link} from 'react-router-dom';
@@ -46,6 +59,7 @@ export default function Signup() {
     
 
 
+<<<<<<< HEAD
     return (
         <>
           <Card>
@@ -76,3 +90,6 @@ export default function Signup() {
       )
     }
     
+=======
+export default LoginForm;
+>>>>>>> 3f96970668e3b1cd8882f7da8948f11541c44f5d

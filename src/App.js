@@ -1,20 +1,93 @@
-import { useRoutes } from "react-router-dom";
-import Themeroutes from "./routes/Router";
-import FullLayout from "./layouts/FullLayout";
+
+// // import Starter from "../src/views/Starter";
+// // import { Link } from "react-router-dom";
+// import React from 'react';
+import Registration from "./loginApp/Registration";
+// import Login from "./loginApp/Login"
+// // import Dashboard from "./PageNew/Dashboard";
+// import CreateNewStudySet from '../src/Component/FullWebPage/CreateNewStudySet'
+// import StudySet from '../src/Component/FullWebPage/StudySet'
+import Starter from "./views/Starter";
+import Update from "./PageNew/Update";
+// // import { AuthProvider } from "./loginApp/other/AuthContext";
+// import { BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
+
+// import PrivateRoute from './routes/PrivateRoute';
+import FullLayout from './layouts/FullLayout';
+
+// function App() {
+//   return (
+    
+//      <>
+   
+//     <Routes>
+//     <Route  path='/' element={<FullLayout/>}/>
+//        <Route path="/" element={<PrivateRoute>
+//         <FullLayout/>
+//        </PrivateRoute>} />
+
+       
+//        <Route  path='/dashboard' element={<FullLayout/>}/>
+     
+          
+//           <Route  path='/signup' element={<Registration/>}/>
+//           <Route  path='/login' element={<Login/>}/>
+//           <Route  path='/starter' element={<Starter/>}/>
+//           <Route  path='/create-set' element={<CreateNewStudySet/>}/>
+//           <Route  path='/study-set' element={<StudySet/>}/>
+//           <Route   path='/update' element={<Update/>}/>
+       
+//       </Routes>
+    
+//      </>
+   
+//   )
+// }
+
+// export default App
 
 
-const App = () => {
-const routing = useRoutes(Themeroutes);
 
+
+import { Routes,  Route } from 'react-router-dom'
+
+
+import PrivateRoute from './routes/PrivateRoute';
+// import Dashboard from '../src/PageNew/Dashboard';
+import Login from '../src/loginApp/Login';
+// import MobileLogin from './Components/FullWebpages/MobileLogin';
+import CreateNewStudySet from './Component/FullWebPage/CreateNewStudySet';
+import StudySet from './Component/FullWebPage/StudySet'
+// import { AuthProvider } from './context/auth-context';
+
+function App() {
   return (
-    <>
-      <div className="dark">
-          {routing}
-      </div>
-    </>
+   
+<>
+      {/* Browser Pages */}
+      
+      <Routes>
+      <Route  path='/starter' element={<Starter/>}/>
+       <Route path='/' element={<PrivateRoute> <FullLayout/> </PrivateRoute>} />
 
+       
+      <Route  path='/dashboard' element={<FullLayout/>}/>
+     
+          
+         <Route  path='/signup' element={<Registration/>}/>
+          <Route  path='/login' element={<Login/>}/>
+          
+        <Route  path='/create-set' element={<CreateNewStudySet/>}/>
+        <Route path='/:studySetID/edit' element={CreateNewStudySet} />
+          <Route path='/:studySetID' element={<StudySet/>}/>
+        <Route   path='/update' element={<Update/>}/>
+       
+      </Routes>
+       
+     
+
+   </>
   );
-  
-};
+}
 
 export default App;

@@ -1,7 +1,10 @@
 // Import the functions you need from the SDKs you need
+// import firebase from "firebase/app";
+import "firebase/auth"
+
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getDatabase } from "firebase/database";
+// import { getAnalytics } from "firebase/analytics";
+
 import {getAuth} from 'firebase/auth';
 
 
@@ -11,24 +14,22 @@ import {getAuth} from 'firebase/auth';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyC8-NHAZwxeOtWgGt7NZP18PdaPjTVYHk8",
-  authDomain: "fir-final-jsa23.firebaseapp.com",
-  databaseURL: "https://fir-final-jsa23-default-rtdb.firebaseio.com",
-  projectId: "fir-final-jsa23",
-  storageBucket: "fir-final-jsa23.appspot.com",
-  messagingSenderId: "759059436523",
-  appId: "1:759059436523:web:f0acaaed49221b28f8ffae",
-  measurementId: "G-NGR5RR9YW4"
+  apiKey: "AIzaSyCD7EGDyem1OkG445aU4g69dbL6gFvwB1k",
+  authDomain: "flashcard-pj.firebaseapp.com",
+  projectId: "flashcard-pj",
+  storageBucket: "flashcard-pj.appspot.com",
+  messagingSenderId: "428275635930",
+  appId: "1:428275635930:web:529dbfd7f9c7cf3e4077e3"
 };
+
 
 // Initialize Firebase
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
-
-const analytics = getAnalytics(app);
-const database = getDatabase(app);
 
 
-export {auth};
-export default database ;
+// const analytics = getAnalytics(app);
+
+
+
+export const auth = getAuth(app)

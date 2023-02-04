@@ -1,92 +1,84 @@
-import React, {useState, setState} from 'react';
+import React, {useState, useRef} from 'react';
 import '../Registration.css';
 // import {Component} from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
-import database from '../firebase'
-import {ref,push,child,update} from "firebase/database";
+import { Form, Button, Card, Alert} from 'react-bootstrap'
 
-function RegistrationForm() {
-    
+import {useAuth } from '../../contexts/AuthContext'
 
-        const [firstName, setFirstName] = useState('');
-        const [lastName, setLastName] = useState('');
-        const [email, setEmail] = useState('');
-        const [password, setPassword] = useState('');
-        const [confirmPassword, setConfirmPassword] = useState('');
+// import { async } from '@firebase/util';
+import { Link, useNavigate } from "react-router-dom"
 
 
-        const handleInputChange = (e) => {
-            const { id, value } = e.target;
-            if (id === "firstName") {
-                setFirstName(value);
-            }
-            if (id === "lastName") {
-                setLastName(value);
-            }
-            if (id === "email") {
-                setEmail(value);
-            }
-            if (id === "password") {
-                setPassword(value);
-            }
-            if (id === "confirmPassword") {
-                setConfirmPassword(value);
-            }
+// import {ref,push,child,update} from "firebase/database";
 
-        };
 
-        const handleSubmit = () =>{
-            let obj = {
-                    firstName : firstName,
-                    lastName:lastName,
-                    email:email,
-                    password:password,
-                    confirmPassword:confirmPassword,
-                }       
-            const newPostKey = push(child(ref(database), 'posts')).key;
-            const updates = {};
-            updates['/' + newPostKey] = obj
-            return update(ref(database), updates);
-        }
-    
 
-        return (
-            <div className="form">
-                <div className="form-body">
-                    <div className="username">
-                        <label className="form__label" >First Name </label>
-                        <input className="form__input" type="text" value={firstName} onChange={e => setFirstName(e.target.value)} id="firstName" placeholder="First Name" />
-                    </div>
-                    <div className="lastname">
-                        <label className="form__label" >Last Name </label>
-                        <input type="text" name="" id="lastName" value={lastName} className="form__input" onChange={e => setLastName(e.target.value)} placeholder="LastName" />
-                    </div>
-                    <div className="email">
-                        <label className="form__label" >Email </label>
-                        <input type="email" id="email" className="form__input" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-                    </div>
-                    <div className="password">
-                        <label className="form__label" >Password </label>
-                        <input className="form__input" type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-                    </div>
-                    <div className="confirm-password">
-                        <label className="form__label" >Confirm Password </label>
-                        <input className="form__input" type="password" id="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" />
-                    </div>
-                </div>
-                <div class="footer">
-                    <button onClick={() => handleSubmit()} type="submit" className="btnR">Register</button>
-                    <br/>
-                    <span className="have_account">
-                    Already have an account?  
-                    <Link to='/LoginForm' className="link_login">Login</Link>
-                </span>
-                </div>
-                
-            </div>
-
-        );
+export default function Signup() {
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const passwordConfirmRef = useRef()
+    const { signup } = useAuth()
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
+  
+    async function handleSubmit(e) {
+      e.preventDefault()
+  
+      if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+        return setError("Passwords do not match")
+      }
+  
+      try {
+        setError("")
+        setLoading(true)
+        await signup(emailRef.current.value, passwordRef.current.value)
+        
+        navigate('/dashboard')
+      } catch(err) {
+        console.log(err)
+        setError("Something was wrong")
+      }
+      
+      
+      setLoading(false)
     }
+  
+    
 
-export default RegistrationForm;
+
+    return (
+        <>
+          <Card>
+            <Card.Body>
+              <h2 className="text-center mb-4">Sign Up</h2>
+              {error && <Alert variant="danger">{error}</Alert>}
+              <Form onSubmit={handleSubmit}>
+                <Form.Group id="email">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control type="email" ref={emailRef} required />
+                </Form.Group>
+                <Form.Group id="password">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" ref={passwordRef} required />
+                </Form.Group>
+                <Form.Group id="password-confirm">
+                  <Form.Label>Password Confirmation</Form.Label>
+                  <Form.Control type="password" ref={passwordConfirmRef} required />
+                </Form.Group>
+                <Button disabled={loading} className="w-100 mt-4" type="submit">
+                  Sign Up
+                </Button>
+              </Form>
+            </Card.Body>
+            <div className="w-100 text-center mt-2 mb-2">
+            Already have an account? <Link to="/login">Log In</Link>
+          </div>
+          </Card>
+         
+        </>
+      )
+    }
+    

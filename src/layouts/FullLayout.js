@@ -1,19 +1,19 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "./Sidebar";
+
 import Header from "./Header";
 import { Container } from "reactstrap";
+import TopNav from "../Component/Fragment/TopNav";
 
 const FullLayout = () => {
   return (
     <main>
-      <div className="pageWrapper d-lg-flex">
+      <div >
         {/********Sidebar**********/}
-        <aside className="sidebarArea shadow" id="sidebarArea">
-          <Sidebar />
-        </aside>
+       
         {/********Content Area**********/}
 
-        <div className="contentArea">
+        <div >
+         
           {/********header**********/}
           <Header />
           {/********Middle Content**********/}

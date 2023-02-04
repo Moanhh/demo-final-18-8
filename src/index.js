@@ -1,18 +1,24 @@
-import React, { Suspense } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./assets/scss/style.scss";
 import App from "./App";
-import { HashRouter } from "react-router-dom";
-import Loader from "./layouts/loader/Loader";
+import "bootstrap/dist/css/bootstrap.min.css"
+import { BrowserRouter , Routes, Route  } from "react-router-dom";
+
+import AuthProvider from '../src/contexts/AuthContext';
+
 
 
 ReactDOM.render(
-  <Suspense fallback={<Loader />}>
-    <HashRouter>
-      <App />
-    </HashRouter>
-  </Suspense>,
-
-  document.getElementById("root")
+  <React.StrictMode>
+    <AuthProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="*" element={ <App /> }>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+    </AuthProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
-

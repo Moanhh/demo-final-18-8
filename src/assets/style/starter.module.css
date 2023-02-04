@@ -1,27 +1,53 @@
+
+
+.btn_starter {
+  background-color:#a6c5ee;
+  cursor: pointer;
+  font-size: 1.8rem;
+  text-decoration: none;
+}
+.btn_starter:hover {
+  background-color: #FF94CC;
+  transform: scale(0.8);
+  transition-duration: 0.5s;
+}
+
+
 .masthead {
-  padding-top: 10.5rem;
-  padding-bottom: 6rem;
+  padding-top: 5rem;
+  padding-bottom: 8rem;
+
   text-align: center;
   color: #0d11db;
-  
- 
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
-  background-size: cover;
- 
+  font-weight: 1000;
+
+  background: url('../images/img/picLogin.png');
+  
+  height:100vh;
+  width: 100%;
 }
-.masthead .mastheadsubheading {
-  font-size: 1.5rem;
+
+.container {
+  background-color: rgb(243, 233, 235);
+  padding: 2.5rem 3rem;
+  margin:0 15rem;
+  opacity: 0.75;
+}
+
+.masthead .mast_head_subheading {
+  font-size: 2rem;
   font-style: italic;
-  line-height: 1.5rem;
+  line-height: 2rem;
   margin-bottom: 25px;
   font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
-.masthead .mastheadheading {
-  font-size: 3.25rem;
-  font-weight: 700;
-  line-height: 3.25rem;
+.masthead .mast_head_heading {
+  font-size: 3.8rem;
+  font-weight: 900;
+  line-height: 3.8rem;
   margin-bottom: 2rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
@@ -31,13 +57,13 @@
     padding-top: 17rem;
     padding-bottom: 12.5rem;
   }
-  .masthead .mastheadsubheading {
+  .masthead .mast_head_subheading {
     font-size: 2.25rem;
     font-style: italic;
     line-height: 2.25rem;
     margin-bottom: 2rem;
   }
-  .masthead .mastheadheading {
+  .masthead .mast_head_heading {
     font-size: 4.5rem;
     font-weight: 700;
     line-height: 4.5rem;
@@ -45,14 +71,3 @@
   }
 }
 
-.btnstarter {
-  color: black;
-  background-color: #9cff86;
-  font-size: 25px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.btnstarter:hover {
-  background-color: #8c13bb;
-}

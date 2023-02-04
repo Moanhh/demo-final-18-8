@@ -1,58 +1,78 @@
+import React, {useState, useRef} from 'react';
 
-// KHÔNG DÙNG DƯỢC
+// import {Component} from 'react';
+// import {Link} from 'react-router-dom';
 
-import {useState} from 'react';
-import { Link } from 'react-router-dom';
-import '../Login.css';
-import {signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth';
-import {auth} from '../firebase';
-import {useNavigate} from 'react-router-dom';
-import {useAuthValue} from '../other/AuthContext';
+import { Form, Button, Card, Alert} from 'react-bootstrap'
+
+import {useAuth } from '../../contexts/AuthContext'
+
+// import { async } from '@firebase/util';
+import { Link, useNavigate } from "react-router-dom"
+import {toast} from 'react-toastify';
 
 
-function LoginForm() {
+// import {ref,push,child,update} from "firebase/database";
+
+
+
+export default function Signup() {
+    const emailRef = useRef()
+    const passwordRef = useRef()
+   
+    const { login } = useAuth()
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
   
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('')
-  const {setTimeActive} = useAuthValue()
-  const navigate = useNavigate()
-
- 
-
-  const login = e => {
+    async function handleSubmit(e) {
+      e.preventDefault()
+  
+      
+      try {
+        setError("")
+        setLoading(true)
+        await login(emailRef.current.value, passwordRef.current.value)
+        navigate('/dashboard')
+      } catch(error) {
+        console.log(error)
+        setError("Something went wrong")
+      }
+      
+      
+      setLoading(false)
+    }
+  
     
-  }
 
-  return (
-    <div>
-        return (
-            <div className="form">
-                <div className="form-body">
-                    <div className="email">
-                        <label className="form__label" >Email </label>
-                        <input type="email" id="email" className="form__input" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-                    </div>
-                    <div className="password">
-                        <label className="form__label" >Password </label>
-                        <input className="form__input" type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-                    </div>
-                      
-                </div>
-                <div class="footer">
-                    <button type="submit" className="btnL">Login</button>
-                    <br/>
-                    <span className="have_account">
-                    Don't have an account ?  
-                    <Link to='/' className="link_login">Create one here</Link>
-                </span>
-                </div>
+
+    return (
+        <>
+          <Card>
+            <Card.Body>
+              <h2 className="text-center mb-4">Log In</h2>
+              {error && <Alert variant="danger">{error}</Alert>}
+              <Form onSubmit={handleSubmit}>
+                <Form.Group id="email">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control type="email" ref={emailRef} required />
+                </Form.Group>
+                <Form.Group id="password">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" ref={passwordRef} required />
+                </Form.Group>
                 
-            </div>
-
-        );
-    </div>
-  )
-}
-
-export default LoginForm;
+                <Button disabled={loading} className="w-100 mt-4" type="submit">
+                  Log IN
+                </Button>
+              </Form>
+            </Card.Body>
+            <div className="w-100 text-center mt-2 mb-2">
+            Don't have account? <Link to="/signup">Sign Up</Link>
+          </div>
+          </Card>
+         
+        </>
+      )
+    }
+    

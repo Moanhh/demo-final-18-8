@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import FlashcardList from '../QuickCard/QuickCardList';
 import '../QuickCard/qApp.css';
 import axios from 'axios'
+import Header from '../../layouts/Header'
 
 
 const QuickCardApp = () => {
@@ -60,6 +61,7 @@ const QuickCardApp = () => {
 
       return (
         <>
+        <Header />
           <form className="header" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="category">Category</label>

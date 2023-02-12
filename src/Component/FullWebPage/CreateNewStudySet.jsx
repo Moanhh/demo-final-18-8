@@ -10,7 +10,7 @@ import { useNavigate, useLocation } from 'react-router';
 import CreateNewSingleCard from "../Fragment/CreateNewSingleCard";
 import AddCard from "../Fragment/AddCard";
 import Header from '../../layouts/Header';
-import { useAuth } from '../../../src/contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 import { getDatabase, ref, query, orderByChild } from "firebase/database";
 import { getAuth } from "firebase/auth";

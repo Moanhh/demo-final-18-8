@@ -14,6 +14,7 @@ import Update from "./PageNew/Update";
 
 // import PrivateRoute from './routes/PrivateRoute';
 import FullLayout from './layouts/FullLayout';
+import QuickCardApp from './views/QuickCard/qApp'
 
 // function App() {
 //   return (
@@ -67,11 +68,13 @@ function App() {
       {/* Browser Pages */}
       
       <Routes>
-      <Route  path='/starter' element={<Starter/>}/>
-       <Route path='/' element={<PrivateRoute> <FullLayout/> </PrivateRoute>} />
+      <Route  path='/' element={<Starter/>}/>
+      {/* <Route path='/dashboard' element={<PrivateRoute> 
+        <FullLayout/> 
+      </PrivateRoute>} /> */}
 
        
-      <Route  path='/dashboard' element={<FullLayout/>}/>
+      <Route  path='/home' element={<FullLayout/>}/>
      
           
          <Route  path='/signup' element={<Registration/>}/>
@@ -81,6 +84,8 @@ function App() {
         <Route path='/:studySetID/edit' element={CreateNewStudySet} />
           <Route path='/:studySetID' element={<StudySet/>}/>
         <Route   path='/update' element={<Update/>}/>
+        <Route   path='/quickcard' element={<QuickCardApp/>}/>
+
        
       </Routes>
        

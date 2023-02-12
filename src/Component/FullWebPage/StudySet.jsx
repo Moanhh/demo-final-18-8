@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React,{ useState, useEffect } from 'react'
 
 
 import { FaMask, FaPencilAlt, FaSpellCheck} from 'react-icons/fa';
@@ -20,7 +20,7 @@ import {
 
 import { Link as LinkRoute, useParams, useNavigate } from 'react-router-dom'
 
-import { getDatabase, ref, query, orderByChild } from "firebase/database";
+import { getDatabase, ref, query, child, setDoc, get } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
 import ReactCardFlip from 'react-card-flip';
@@ -28,7 +28,9 @@ import ReactCardFlip from 'react-card-flip';
 import Header from "../../layouts/Header";
 import SingleCard from "../Fragment/SingleCard";
 import { useAuth } from '../../contexts/AuthContext'
+import { db } from '../../loginApp/firebase'
 
+import { ref as storageRef } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-storage.js";
 
 const StudySet = () => {
     const [studySet, setStudySet] = useState({
@@ -40,25 +42,20 @@ const StudySet = () => {
             id: ''
         }]
     })
-
-    const db = getDatabase()
-    const auth = getAuth()
-
     const [currentFlashCard, setCurrentFlashCard] = useState(0)
     const [move, setMove] = useState(false)
     const [isFlipped, setIsFlipped] = useState(false)
 
-    const { currentUser } = useAuth(null);
+    const { currentUser } = useAuth();
     const { studySetID } = useParams()
     const navigate = useNavigate()
-    // const totalStudySets = firebase.database().ref('users/' + currentUser.uid + '/totalStudySets').child(studySetID)
-    const totalStudySets = query(ref(db, 'user-users/' + currentUser.uid), orderByChild('/totalStudySets'));
-
+    
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    useEffect(() => {
-        totalStudySets().then((snapshot) => {
-            const todos = snapshot.val()
+
+    const dbRef = ref(getDatabase());
+    const totalStudySets = get(child(dbRef, `/users/${currentUser.uid}/totalStudySets`)).then((snapshot) => {
+        const todos = snapshot.val()
 
             const tempStudySet = {
                 title: todos.title,
@@ -71,8 +68,26 @@ const StudySet = () => {
             })
 
             setStudySet(tempStudySet)
-        })
-    }, [])
+    })
+
+    // const totalStudySets = query(storageRef(db,'users/' + currentUser.uid + '/totalStudySets'));
+    // useEffect(() => {
+    //     totalStudySets.get().then((snapshot) => {
+    //         const todos = snapshot.val()
+
+    //         const tempStudySet = {
+    //             title: todos.title,
+    //             description: todos.description,
+    //             flashCards: []
+    //         }
+
+    //         todos.flashCards.forEach((card) => {
+    //             tempStudySet.flashCards.push(card)
+    //         })
+
+    //         setStudySet(tempStudySet)
+    //     })
+    // }, [])
 
     const deleteStudySet = () => {
         totalStudySets.remove()
@@ -108,7 +123,7 @@ const StudySet = () => {
     return (
         <>
             {/* Top Nav Bar */}
-            <Header currentUser={currentUser} />
+            {/* <TopNavBar currentUser={currentUser} /> */}
             {/* Main Content */}
             <Box margin='0 auto' mt='3.5rem' maxW='55rem' >
                 {/* Heading + Main Content */}
@@ -125,11 +140,14 @@ const StudySet = () => {
                             {/* Group Top: Study */}
                             <Flex direction='column' justify='space-evenly' w='158px' h='240px'>
                                 <Text pl='0.5rem' color='gray.400' fontSize='sm'>Study</Text>
+                                <React.Fragment>
                                 <Button variant='ghost' iconSpacing='1rem' justifyContent='flex-start' _hover={{ bg: '#ffcd1f' }} leftIcon={<FiCopy size='1.5rem' color='#4257b2' />}  >Flashcards</Button>
                                 <Button variant='ghost' isDisabled iconSpacing='1rem' justifyContent='flex-start' _hover={{ bg: '#ffcd1f' }} leftIcon={<MdRotateRight size='1.5rem' color='#4257b2' />} >Learn</Button>
                                 <Button variant='ghost' isDisabled iconSpacing='1rem' justifyContent='flex-start' _hover={{ bg: '#ffcd1f' }} leftIcon={<FaPencilAlt size='1.5rem' color='#4257b2' />} >Write</Button>
                                 <Button variant='ghost' isDisabled iconSpacing='1rem' justifyContent='flex-start' _hover={{ bg: '#ffcd1f' }} leftIcon={<FaSpellCheck size='1.5rem' color='#4257b2' />} >Spell</Button>
                                 <Button variant='ghost' isDisabled iconSpacing='1rem' justifyContent='flex-start' _hover={{ bg: '#ffcd1f' }} leftIcon={<BsFileEarmarkText size='1.5rem' color='#4257b2' />} >Text</Button>
+                                </React.Fragment>
+                               
                             </Flex>
                             {/* Group Bottom: Play */}
                             <Flex direction='column' justify='space-between' w='158px' h='108px' mt='1rem'>
@@ -198,10 +216,10 @@ const StudySet = () => {
                             <IconButton _hover={{ color: '#ffcd1f' }} mr='.5rem' isDisabled variant='ghost' icon={<HiOutlinePlusCircle size='1.3rem' />} />
                             <Tooltip hasArrow label='Edit' fontSize='sm' color='white' bg='primary' borderRadius='0.2rem' p='0.5rem'>
                                 {/* Redirect to Edit Study Set Page */}
-                                <LinkRoute to={'/' + studySetID + '/edit'}>
+                                {/* <LinkRoute to={'/' + studySetID + '/edit'}>
                                     {/* Edit Button */}
-                                    <IconButton _hover={{ color: '#ffcd1f' }} mr='.5rem' variant='ghost' icon={<BiPencil size='1.3rem' />} />
-                                </LinkRoute>
+                                    {/* <IconButton _hover={{ color: '#ffcd1f' }} mr='.5rem' variant='ghost' icon={<BiPencil size='1.3rem' />} />
+                                </LinkRoute> */} 
                             </Tooltip>
                             <IconButton _hover={{ color: '#ffcd1f' }} mr='.5rem' isDisabled variant='ghost' icon={<FiUpload size='1.3rem' />} />
                             <IconButton _hover={{ color: '#ffcd1f' }} mr='.5rem' isDisabled variant='ghost' icon={<RiInformationLine size='1.3rem' />} />
@@ -223,8 +241,11 @@ const StudySet = () => {
                                     <ModalFooter paddingY='1.5rem' paddingX='0rem' >
                                         {/* I have no idea why flex='35%' each won't work... */}
                                         <Flex w='100%' justify='space-evenly'>
+                                            <React.Fragment>
                                             <Button _hover={{ bg: '#595d6a' }} fontSize='1.5rem' w='14rem' h='4rem' bg='#303545' color='white' onClick={onClose}>Cancel</Button>
                                             <Button _hover={{ bg: '#ff8e7b' }} fontSize='1.5rem' w='14rem' h='4rem' bg='#ff725b' color='white' onClick={deleteStudySet} >Yes, delete set</Button>
+                                            </React.Fragment>
+                                            
                                         </Flex>
                                     </ModalFooter>
                                 </ModalContent>
@@ -255,9 +276,12 @@ const StudySet = () => {
                             <PopoverContent ml='3rem' w='13rem' h='6rem'>
                                 <PopoverBody >
                                     <Flex w='13rem' direction='column' h='4rem'>
+                                        <React.Fragment>
                                         <Button variant='unstyled' textAlign='left' pl='.5rem' _active={{}} _focus={{}} _hover={{ bg: '#4299E1', color: 'white' }} mb='0.4rem' w='90%' fontSize='sm'  >Original</Button>
                                         <Button variant='unstyled' textAlign='left' pl='.5rem' _active={{}} _focus={{}} _hover={{ bg: '#4299E1', color: 'white' }} w='90%' mb='0.4rem' fontSize='sm'  >Alphabetical</Button>
                                         <Button variant='unstyled' textAlign='left' pl='.5rem' _active={{}} _focus={{}} _hover={{ bg: '#4299E1', color: 'white' }} w='90%' fontSize='sm' >Your stats</Button>
+                                        </React.Fragment>
+                                        
                                     </Flex>
                                 </PopoverBody>
                             </PopoverContent>

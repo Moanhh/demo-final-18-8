@@ -1,17 +1,12 @@
-<<<<<<< HEAD
-import React, {useState, useRef} from 'react';
-=======
 
-// CHƯA DÙNG DƯỢC ĐÂU!!
 
-import {useState} from 'react';
-import { Link } from 'react-router-dom';
+import {useState,useRef} from 'react';
+
 import '../Login.css';
-import {signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth';
-import {auth} from '../firebase';
-import {useNavigate} from 'react-router-dom';
-import {useAuthValue} from '../other/AuthContext';
->>>>>>> 3f96970668e3b1cd8882f7da8948f11541c44f5d
+// import {signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth';
+// import {auth} from '../firebase';
+
+
 
 // import {Component} from 'react';
 // import {Link} from 'react-router-dom';
@@ -22,14 +17,13 @@ import {useAuth } from '../../contexts/AuthContext'
 
 // import { async } from '@firebase/util';
 import { Link, useNavigate } from "react-router-dom"
-import {toast} from 'react-toastify';
+// import {toast} from 'react-toastify';
 
 
 // import {ref,push,child,update} from "firebase/database";
 
 
-
-export default function Signup() {
+ function LogIn() {
     const emailRef = useRef()
     const passwordRef = useRef()
    
@@ -46,7 +40,7 @@ export default function Signup() {
         setError("")
         setLoading(true)
         await login(emailRef.current.value, passwordRef.current.value)
-        navigate('/dashboard')
+        navigate('/home')
       } catch(error) {
         console.log(error)
         setError("Something went wrong")
@@ -59,7 +53,7 @@ export default function Signup() {
     
 
 
-<<<<<<< HEAD
+
     return (
         <>
           <Card>
@@ -89,7 +83,5 @@ export default function Signup() {
         </>
       )
     }
-    
-=======
-export default LoginForm;
->>>>>>> 3f96970668e3b1cd8882f7da8948f11541c44f5d
+
+export default LogIn;

@@ -1,6 +1,7 @@
 body {
-    background-color: #C8D0D2;
+    /* background-color: #C8D0D2; */
     margin: 0;
+    
   }
   
   .container {
@@ -18,6 +19,7 @@ body {
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, .3);
     width: 100%;
     height: auto;
+    
   }
   
   .form-group {
@@ -49,7 +51,8 @@ body {
   .card-grid {
     display: grid;
     align-items: center;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, 30rem);
+    
     gap: 1rem;
     margin-top: 2.55rem ;
     justify-content: space-around;
@@ -101,7 +104,7 @@ body {
   .flashcard-option {
     margin-top: .25rem;
     color: #555;
-    font-size: .75rem;
+    font-size: 1.75rem;
   }
   
   .flashcard-option:first-child {

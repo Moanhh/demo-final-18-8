@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 import Header from "./Header";
 import { Container } from "reactstrap";
-import TopNav from "../Component/Fragment/TopNav";
+// import TopNav from "../Component/Fragment/TopNav";
 
 const FullLayout = () => {
   return (

@@ -1,11 +1,13 @@
-import { async } from "@firebase/util";
+// import { async } from "@firebase/util";
 import React from "react";
-import {useState} from 'react'
-import { Link, useLocation, Navigate  } from "react-router-dom";
-import {
-  Text, Flex, Image, Avatar, Input, InputGroup, InputLeftElement, IconButton, PopoverTrigger, PopoverContent, PopoverBody, Popover,
-  Box, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, useDisclosure, Modal, ModalFooter, FormControl, FormLabel
-} from "@chakra-ui/react"
+// import {useState} from 'react'
+// import { Link, useLocation, Navigate  } from "react-router-dom";
+
+import { Link} from "react-router-dom";
+// import {
+//   Text, Flex, Image, Avatar, Input, InputGroup, InputLeftElement, IconButton, PopoverTrigger, PopoverContent, PopoverBody, Popover,
+//   Box, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, useDisclosure, Modal, ModalFooter, FormControl, FormLabel
+// } from "@chakra-ui/react"
 import {
   Navbar,
   Collapse,
@@ -19,19 +21,21 @@ import {
   Dropdown,
   Button,
 } from "reactstrap";
-import { IoMdCopy } from 'react-icons/io';
-import {FaMask} from 'react-icons/fa';
-import {AiOutlineSearch, AiOutlineBell} from 'react-icons/ai';
-import {FiFolderPlus} from 'react-icons/fi';
-import {RiArrowDownSLine} from 'react-icons/ri';
+// import { IoMdCopy } from 'react-icons/io';
+// import {FaMask} from 'react-icons/fa';
+// import {AiOutlineSearch, AiOutlineBell} from 'react-icons/ai';
+// import {FiFolderPlus} from 'react-icons/fi';
+// import {RiArrowDownSLine} from 'react-icons/ri';
 import { ReactComponent as LogoWhite } from "../assets/images/logos/xtremelogowhite.svg";
 import user from "../assets/images/users/user.jpg";
 import { auth } from "../loginApp/firebase";
+
+
 // import { useAuth } from "../contexts/AuthContext"
 
 function Header()  {
 
-  const [folderName, setFolderName] = useState("");
+  // const [folderName, setFolderName] = useState("");
   // const navigate = Navigate()
   // const location = useLocation()
   // const { isOpen, onOpen, onClose } = useDisclosure();
@@ -44,23 +48,23 @@ function Header()  {
   };
   
 
-  const folderNameChangeHandler = (newFolderName) => {
-      setFolderName(newFolderName.target.value);
-  }
+  // const folderNameChangeHandler = (newFolderName) => {
+  //     setFolderName(newFolderName.target.value);
+  // }
 
-  const addNewFolderHandler = (event) => {
-      event.preventDefault();
-      setFolderName('');
-  }
+  // const addNewFolderHandler = (event) => {
+  //     event.preventDefault();
+  //     setFolderName('');
+  // }
 
 
   const [isOpen, setIsOpen] = React.useState(true);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
-  const Handletoggle = () => {
-    setIsOpen(!isOpen);
-  };
+  // const Handletoggle = () => {
+  //   setIsOpen(!isOpen);
+  // };
   
   return (
     <Navbar color="primary" dark expand="md">
@@ -85,12 +89,18 @@ function Header()  {
         </Button>
       </div>
 
-      <Collapse navbar isOpen={isOpen}>
+      <Collapse navbar isOpen={setIsOpen}>
         <Nav className="me-auto" navbar>
           
           <NavItem>
-            <Link to="/dashboard " className="nav-link">
+            <Link to="/home " className="nav-link">
               Home
+            </Link>
+          </NavItem>
+
+          <NavItem>
+            <Link to="/quickcard " className="nav-link">
+            QuickCards
             </Link>
           </NavItem>
           
@@ -130,7 +140,7 @@ function Header()  {
           <DropdownMenu>
             
             <DropdownItem> 
-              <Link to="/update">
+              <Link to="/">
                 Edit Profile
               </Link>
             </DropdownItem>
